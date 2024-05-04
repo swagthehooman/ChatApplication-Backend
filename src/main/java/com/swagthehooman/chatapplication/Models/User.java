@@ -1,5 +1,7 @@
 package com.swagthehooman.chatapplication.Models;
 
+import java.util.UUID;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -19,11 +21,12 @@ import lombok.Setter;
 public class User {
 
     @Id
+    private UUID userId;
     private String userName;
     private String email;
     private String password;
-    private long size;
+    private long fileSize;
     @Lob
     @Column(columnDefinition = "BLOB")
-    private byte[] data;
+    private byte[] dp;
 }
