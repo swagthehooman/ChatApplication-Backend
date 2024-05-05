@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -26,7 +26,7 @@ public class User {
     private String email;
     private String password;
     private long fileSize;
-    @Lob
-    @Column(columnDefinition = "BLOB")
-    private byte[] dp;
+    // @Lob
+    // @Column(columnDefinition = "BLOB")
+    // private byte[] dp;
 }

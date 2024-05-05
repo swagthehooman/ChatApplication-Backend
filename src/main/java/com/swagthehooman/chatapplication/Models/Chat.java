@@ -24,4 +24,5 @@ public class Chat {
     private String recipientName;
     private UUID recipientUserId;
     private String chatMessage;
+    private UUID channelId;
 }

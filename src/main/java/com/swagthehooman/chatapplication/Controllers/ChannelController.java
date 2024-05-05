@@ -5,10 +5,13 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.swagthehooman.chatapplication.DTOs.ChannelDTO;
 import com.swagthehooman.chatapplication.Models.Channel;
 import com.swagthehooman.chatapplication.Repositories.IChannelRepository;
 
@@ -19,14 +22,34 @@ public class ChannelController {
     @Autowired
     private IChannelRepository channelRepo;
 
-    @GetMapping("/userchannels")
-    public List<Channel> getChannelsById(@RequestParam UUID id) {
-        return channelRepo.findByUserId(id);
+    // @GetMapping("/userchannels")
+    // public List<ChannelDTO> getChannelsById(@RequestParam UUID id) {
+    // return channelRepo.findByUserId(id).stream().map(i -> new
+    // ChannelDTO(i)).toList();
+    // }
+
+    @GetMapping("/allchannels/all")
+    public List<ChannelDTO> getAllChannels() {
+        return channelRepo.findAll().stream().map(i -> new ChannelDTO(i)).toList();
     }
 
-    @GetMapping("/allchannels")
-    public List<Channel> getAllChannels() {
-        return channelRepo.findAll();
+    @GetMapping("/allchannels/user")
+    public List<ChannelDTO> getAllChannelsByUserId(@RequestParam UUID userid) {
+        return channelRepo.findByAuthorIdOrRecipientId(userid).stream().map(i -> new ChannelDTO(i)).toList();
     }
-    
+
+    @PostMapping("/savechannel")
+    public ChannelDTO saveChannel(@RequestBody ChannelDTO dto) {
+        Channel channel = new Channel();
+        channel.setChannelId(UUID.randomUUID());
+        channel.setUserOneId(dto.getUserOneId());
+        channel.setUserTwoId(dto.getUserTwoId());
+        channel.setUserOneName(dto.getUserOneName());
+        channel.setUserTwoName(dto.getUserTwoName());
+
+        channelRepo.save(channel);
+        dto.setChannelId(channel.getChannelId());
+        return dto;
+    }
+
 }

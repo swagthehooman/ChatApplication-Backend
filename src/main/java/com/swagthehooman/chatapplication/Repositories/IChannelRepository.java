@@ -10,6 +10,6 @@ import org.springframework.data.repository.query.Param;
 import com.swagthehooman.chatapplication.Models.Channel;
 
 public interface IChannelRepository extends JpaRepository<Channel, UUID> {
-    @Query("select c from channel c where c.useroneid = :id or c.usertwoid = :id")
-    public List<Channel> findByUserId(@Param("id") UUID id);
+    @Query(" FROM Channel c WHERE :Id IN (c.userOneId, c.userTwoId)")
+    public List<Channel> findByAuthorIdOrRecipientId(@Param("Id") UUID id);
 }
