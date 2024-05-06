@@ -22,12 +22,6 @@ public class ChannelController {
     @Autowired
     private IChannelRepository channelRepo;
 
-    // @GetMapping("/userchannels")
-    // public List<ChannelDTO> getChannelsById(@RequestParam UUID id) {
-    // return channelRepo.findByUserId(id).stream().map(i -> new
-    // ChannelDTO(i)).toList();
-    // }
-
     @GetMapping("/allchannels/all")
     public List<ChannelDTO> getAllChannels() {
         return channelRepo.findAll().stream().map(i -> new ChannelDTO(i)).toList();
@@ -38,7 +32,7 @@ public class ChannelController {
         return channelRepo.findByAuthorIdOrRecipientId(userid).stream().map(i -> new ChannelDTO(i)).toList();
     }
 
-    @PostMapping("/savechannel")
+    @PostMapping("/createchannel")
     public ChannelDTO saveChannel(@RequestBody ChannelDTO dto) {
         Channel channel = new Channel();
         channel.setChannelId(UUID.randomUUID());

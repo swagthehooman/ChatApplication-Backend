@@ -21,11 +21,13 @@ import lombok.Setter;
 public class User {
 
     @Id
-    private UUID userId;
-    private String userName;
     private String email;
+    private UUID userId;
+    private String username;
     private String password;
     private long fileSize;
+    private Boolean isActive;
+    private String roles;
     // @Lob
     // @Column(columnDefinition = "BLOB")
     // private byte[] dp;
