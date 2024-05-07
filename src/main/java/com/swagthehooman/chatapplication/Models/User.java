@@ -21,8 +21,8 @@ import lombok.Setter;
 public class User {
 
     @Id
-    private String email;
     private UUID userId;
+    private String email;
     private String username;
     private String password;
     private long fileSize;

@@ -8,11 +8,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class UserLoginDTO {
-    private String email;
+    private String username;
     private String password;
 
-    public UserLoginDTO(String email, String password) {
-        this.email = email;
+    public UserLoginDTO(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 }
