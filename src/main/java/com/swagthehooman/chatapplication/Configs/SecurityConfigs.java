@@ -39,9 +39,9 @@ public class SecurityConfigs {
         http.csrf(csrf -> csrf.disable());
         http.cors(Customizer.withDefaults());
         http.authorizeHttpRequests(req -> {
-            req.requestMatchers("/topic/**").permitAll();
+            req.requestMatchers("/chatapp/topic/**").permitAll();
             req.requestMatchers("/auth/**").permitAll();
-            req.requestMatchers("/channels").hasRole("USER");
+            req.requestMatchers("/channels/**").hasRole("USER");
             req.requestMatchers("/chats/**").hasRole("USER");
             req.requestMatchers("/users/**").hasRole("USER");
             req.anyRequest().authenticated();

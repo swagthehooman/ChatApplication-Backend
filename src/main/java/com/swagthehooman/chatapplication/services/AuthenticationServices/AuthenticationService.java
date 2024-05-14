@@ -38,7 +38,7 @@ public class AuthenticationService {
 
         userRepo.save(user);
         Authentication auth = authManager.authenticate(
-                new UsernamePasswordAuthenticationToken(userInfo.getEmail(), userInfo.getPassword()));
+                new UsernamePasswordAuthenticationToken(userInfo.getUsername(), userInfo.getPassword()));
         String token = tokenService.generateJwt(auth);
 
         return new UserAuthDTO(user, token);

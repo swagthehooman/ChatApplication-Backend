@@ -4,11 +4,13 @@ import java.util.UUID;
 
 import com.swagthehooman.chatapplication.Models.Channel;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class ChannelDTO {
     private UUID channelId;
     private UUID userOneId;
@@ -17,7 +19,7 @@ public class ChannelDTO {
     private String userTwoName;
 
     public ChannelDTO(Channel channel) {
-        this.channelId = channel.getChannelId();
+        // this.channelId = channel.getChannelId();
         this.userOneId = channel.getUserOneId();
         this.userOneName = channel.getUserOneName();
         this.userTwoId = channel.getUserTwoId();

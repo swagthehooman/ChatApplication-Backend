@@ -18,7 +18,7 @@ public class UserController {
     private IUserRepository userRepo;
 
     @GetMapping("/prefixuser")
-    public List<String> getMethodName(@RequestParam String prefix) {
+    public List<String> getUserByPrefix(@RequestParam String prefix) {
         return userRepo.findUsernameByPrefix(prefix);
     }
 
